@@ -1,0 +1,47 @@
+# Architecture Overview
+
+This document explains the design and architecture of the SOC home lab environment.
+
+---
+
+## 1. Network Layout
+
+The lab simulates a small enterprise environment with the following subnets:
+
+- Internal Network: AD, Windows 10, Splunk
+- Attack Network: Kali
+- NAT Network: Internet access for updates and package downloads
+
+All VMs share a VirtualBox NAT Network for internal communication.
+
+---
+
+## 2. Virtual Machines
+
+### Windows Server 2022 (Active Directory)
+- Hosts the `homelab.local` domain
+- Provides Kerberos authentication
+- Manages users, workstations, and GPOs
+- Deploys Sysmon config to domain-joined machines
+
+### Windows 10 Workstation
+- Joined to the AD domain
+- Generates user activity logs
+- Runs Sysmon for detailed event monitoring
+- Sends logs to Splunk
+
+### Ubuntu Server (Splunk Enterprise)
+- Receives logs from Splunk Universal Forwarders
+- Parses Sysmon logs using TA-Microsoft-Sysmon
+- Provides dashboards, alerts, and saved searches
+
+### Kali Linux
+- Used to simulate adversarial activity:
+  - Lateral movement
+  - Brute force attempts
+  - Payload execution
+- Helps test detections and alerts
+
+---
+
+## 3. Log Forwarding Pipeline
