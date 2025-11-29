@@ -1,0 +1,9 @@
+[tcpout]
+defaultGroup = splunk_group
+
+[tcpout:splunk_group]
+server = 192.168.10.10:9997
+heartbeatFrequency = 30
+sendCookedData = true
+
+[tcpout-server://192.168.10.10:9997]
