@@ -1,22 +1,29 @@
-# Enable Sysmon logs
-[WinEventLog://Microsoft-Windows-Sysmon/Operational]
-disabled = 0
-start_from = oldest
-current_only = 0
-checkpointInterval = 5
+# Application logs
+[WinEventLog://Application]
+index = endpoint
+disabled = false
+
 
 # Security event logs
 [WinEventLog://Security]
-disabled = 0
-start_from = oldest
-current_only = 0
-acceptTruncatedLogs = 0
+index = endpoint
+disabled = false
 
 # System logs
 [WinEventLog://System]
-disabled = 0
-start_from = oldest
-current_only = 0
+index = endpoint
+disabled = false
+
+# Enable Sysmon logs
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+index = endpoint
+disabled = false
+renderXml = true
+source = XmlWinEventLog://Microsoft-Windows-Sysmon/Operational
+
+
+
+
 
 # Application logs
 [WinEventLog://Application]
