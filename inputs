@@ -1,0 +1,25 @@
+# Enable Sysmon logs
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = 0
+start_from = oldest
+current_only = 0
+checkpointInterval = 5
+
+# Security event logs
+[WinEventLog://Security]
+disabled = 0
+start_from = oldest
+current_only = 0
+acceptTruncatedLogs = 0
+
+# System logs
+[WinEventLog://System]
+disabled = 0
+start_from = oldest
+current_only = 0
+
+# Application logs
+[WinEventLog://Application]
+disabled = 0
+start_from = oldest
+current_only = 0
